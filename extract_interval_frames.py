@@ -2,8 +2,12 @@ import cv2
 import os
 
 # 输入视频
-input_path = "videos/stick_swing_exmple.mp4"
-output_dir = "images"
+input_path = "videos/stick_swing_exp05.mp4"
+
+# 输出路径
+filename = os.path.basename(input_path)
+name_without_ext = os.path.splitext(filename)[0]
+output_dir = os.path.join("images", name_without_ext)
 
 # 确保输出目录存在
 os.makedirs(output_dir, exist_ok=True)
@@ -13,7 +17,7 @@ cap = cv2.VideoCapture(input_path)
 frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))  # 总帧数
 
 # 想要保存的帧数
-N = 500
+N = 180  # 取6秒的帧，60fps共180张
 N = min(N, frame_count)  # 防止视频帧数不足
 
 # 计算步长
